@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+
+    <title>Document</title>
+</head>
+<body>
+    
+<button onclick="posts()" > ver post </button>
+
+<hr> 
+
+<button onclick="addPost()" > publicar </button>
+ 
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+
+   async function posts (){
+
+        console.log("test");
+
+        axios.get('https://jsonplaceholder.typicode.com/posts').then(function (response) {
+        // handle success
+        console.log(response.data);
+
+        }) .catch(function (error) {
+        // handle error
+        console.log(error);
+        })
+      
+
+
+
+
+    }
+
+
+ async function addPost (){
+
+
+    let post = JSON.stringify({   
+    "postId": 101,
+    "id": 3,
+    "name": "id labore ex et quam laborum",
+    "email": "eze@gardner.biz",
+    "body": "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
+  })
+ 
+
+    let postHeader = ({
+        method : 'POST',
+        url : 'https://jsonplaceholder.typicode.com/posts',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+        data : post
+    })
+
+        axios(postHeader).then(function (response) {
+
+        console.log(JSON.stringify(response.data));
+
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
+
+        }
+
+
+
+</script>
+
+
+</body>
+</html>
